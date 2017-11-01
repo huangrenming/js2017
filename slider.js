@@ -72,3 +72,21 @@ class Slider{
 
 const slider = new Slider('my-slider');
 slider.start();
+
+
+const btn = document.getElementById('btn');
+
+function throttle(fn, wait){
+    var timer;
+    return function(...args){
+        if(!timer){
+            timer = setTimeout(()=>timer=null, wait);
+            return fn.apply(this, args);
+        }
+    }
+}
+
+//按钮每500ms一次点击有效
+btn.onclick = throttle(function(){
+    console.log("button clicked");
+}, 500);
