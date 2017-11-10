@@ -111,3 +111,15 @@ function removal(ar) {
 
     return ret;
 }
+
+function removal(ar) {
+    var ret = []
+
+    ar.forEach(function(e, i, ar) {
+        if (ar.indexOf(e) === i) {
+            ret.push(e);
+        }
+    })
+
+    return ret
+}
