@@ -73,9 +73,7 @@ class Slider{
 const slider = new Slider('my-slider');
 slider.start();
 
-
-const btn = document.getElementById('btn');
-
+// throttle
 function throttle(fn, wait){
     var timer;
     return function(...args){
@@ -86,7 +84,30 @@ function throttle(fn, wait){
     }
 }
 
-//按钮每500ms一次点击有效
 btn.onclick = throttle(function(){
     console.log("button clicked");
 }, 500);
+
+
+// removal
+Array.prototype.forEach = Array.prototype.forEach || function(callback, thisArg) {
+    if (!callback || typeof callback !== 'function') return;
+
+    for (var i = 0, j = this.length; i < j; i++) {
+        callback.call(thisArg, this[i], i, this);
+    }
+}
+
+function removal(ar) {
+    var tmp = {},
+        ret = [];
+
+    for (var i = 0, j = ar.length; i < j; i++) {
+        if (!tmp[ar[i]]) {
+            tmp[ar[i]] = 1;
+            ret.push(ar[i]);
+        }
+    }
+
+    return ret;
+}
